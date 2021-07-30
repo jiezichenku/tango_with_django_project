@@ -1,12 +1,11 @@
-from django.contrib.auth.models import User
 from django.db import models
-# Create your models here.
 from django.template.defaultfilters import slugify
-
-MAX = 128
+from django.contrib.auth.models import User
 
 
 class Category(models.Model):
+    MAX = 128
+
     name = models.CharField(max_length=MAX, unique=True)
     views = models.IntegerField(default=0)
     likes = models.IntegerField(default=0)
@@ -24,6 +23,8 @@ class Category(models.Model):
 
 
 class Page(models.Model):
+    MAX = 128
+
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     title = models.CharField(max_length=MAX)
     url = models.URLField()
